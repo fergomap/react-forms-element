@@ -1,0 +1,147 @@
+.file-component {
+    color: black;
+
+    .dropzone {
+        border: solid 2px darkgrey;
+        border-style: dashed;
+        margin: 5px 0;
+        cursor: pointer;
+
+        > div {
+            outline: none;
+            padding: 20px;
+        }
+
+        p {
+            margin: 0;
+            text-align: center;
+        }
+    }
+
+    .file-name {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 5px 0;
+        justify-content: space-between;
+
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            .download {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #0a84ff;
+                border-radius: 2px;
+                cursor: pointer;
+                width: 21px;
+                height: 21px;
+                
+                .arrow {
+                    border: solid white;
+                    border-width: 0 3px 3px 0;
+                    display: inline-block;
+                    padding: 5px;
+                    margin-top: -5px;
+                }
+    
+                .down {
+                    transform: rotate(45deg);
+                    -webkit-transform: rotate(45deg);
+                }
+    
+                @media only screen and (max-width: 600px) {
+                    width: 23px;
+                    height: 23px;
+                }
+            }
+    
+            .remove {
+                display: block;
+                position: relative;
+                width: 21px;
+                height: 21px;
+                background-color: red;
+                border-radius: 2px;
+                cursor: pointer;
+                margin-left: 5px;
+    
+                &:before, &:after {
+                    position: absolute;
+                    left: 9px;
+                    content: ' ';
+                    height: 20px;
+                    width: 2px;
+                    background-color: white;
+                }
+    
+                &:before {
+                    transform: rotate(45deg);
+                }
+    
+                &:after {
+                    transform: rotate(-45deg);
+                }
+    
+                @media only screen and (max-width: 600px) {
+                    width: 23px;
+                    height: 23px;
+        
+                    &:before, &:after {
+                        left: 11px;
+                        height: 24px;
+                    }
+                }
+            }
+        }
+
+        .name {
+            font-weight: bold;
+            margin-left: 30px;
+        }
+
+        .paperclip {
+            color: black;
+            position: absolute;
+            margin-left: 9px;
+            margin-top: -2px;
+            width: 6px;
+            height: 12px;
+            border-radius: 4px 4px 0 0;
+            border-left: solid 1px currentColor;
+            border-right: solid 1px currentColor;
+            border-top: solid 1px currentColor;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+
+            &:before, &::after {
+                content: '';
+                position: absolute;
+                border-left: solid 1px currentColor;
+                border-right: solid 1px currentColor;
+                border-bottom: solid 1px currentColor;
+            }
+
+            &:before {
+                top: 11px;
+                left: -1px;
+                width: 4px;
+                height: 6px;
+                border-radius: 0 0 3px 3px;
+            }
+
+            &::after {
+                left: 1px;
+                top: 1px;
+                width: 2px;
+                height: 10px;
+                border-radius: 4px 4px 0 0;
+                border-bottom: 0;
+            }
+        }
+    }
+}

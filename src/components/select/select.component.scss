@@ -1,0 +1,46 @@
+.select-component {
+    > div {
+        height: 33px;
+        margin: 5px 0;
+
+        .select__control {
+            background-color: white !important;
+            border-color: darkgrey !important;
+            box-shadow: none !important;
+            min-height: 33px;
+            height: 33px;
+        }
+        
+        .select__value-container, .select__value-indicators {
+            height: 33px;
+            position: initial;
+            padding: 0 5px;
+        }
+
+        .select__indicator {
+            padding: 0 5px;
+        }
+        
+        .select__menu {
+            div {
+                .select__option--is-selected {
+                    background-color: #0a84ff;
+                }
+            }
+        }
+    }
+
+    .input-error {
+        .select__control {
+            border-color: red !important;
+
+            .select__indicator {
+                color: red;
+            }
+
+            .select__indicator-separator {
+                background-color: red;
+            }
+        }
+    }
+}
