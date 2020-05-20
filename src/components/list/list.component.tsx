@@ -81,14 +81,14 @@ const ListComponent: FunctionComponent<FieldComponentProps> = (props): ReactElem
             <table>
                 <thead>
                     <tr>
-                        { (props.field.fields || []).filter(f => f.showInList).map((field: Field, i: number) => <th key={i}>{ field.label }</th> ) }
+                        {(props.field.fields || []).filter(f => f.showInList).map((field: Field, i: number) => <th key={i}>{ field.label }</th>)}
                         <th/>
                     </tr>
                 </thead>
                 <tbody>
                 { props.form[props.field.name].map((element: any, index: number) => {
                     return <tr key={index}>
-                        { (props.field.fields || []).filter(f => f.showInList).map((field: Field, i: number) => <td key={i}>{ fieldToTableElement(field, element[field.name]) }</td> ) }
+                        {(props.field.fields || []).filter(f => f.showInList).map((field: Field, i: number) => <td key={i}>{ fieldToTableElement(field, element[field.name]) }</td>)}
                         <td className="remove-td">
                             <span className="edit-span" onClick={() => editElement(index)}><span className="edit"/></span>
                             <span className="remove not-selected" onClick={() => removeElement(index)}/>

@@ -12,7 +12,7 @@ import ListComponent from 'components/list/list.component';
 import { getFileName } from './utils.service';
 
 export const getField = (field: Field, index: number, form: Record<string, any>, setForm: Function, formErrors: Record<string, string>, setFormErrors: Function, errors?: Record<string, string>, calendarLocale?: any): ReactElement | void => {
-    switch(field.type) {
+    switch (field.type) {
         case 'string':
         case 'email':
         case 'number':
@@ -39,7 +39,7 @@ export const getField = (field: Field, index: number, form: Record<string, any>,
 };
 
 export const fieldToTableElement = (field: Field, value: any): ReactElement => {
-    switch(field.type) {
+    switch (field.type) {
         case 'checkbox':
             return <span className={value ? 'selected' : 'not-selected'}/>;
         case 'checkbox-list':
