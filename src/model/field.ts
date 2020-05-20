@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { ReactElement } from 'react';
 import Option from './option';
 

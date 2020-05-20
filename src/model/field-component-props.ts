@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import Field from 'model/field';
 
 export default interface FieldComponentProps {

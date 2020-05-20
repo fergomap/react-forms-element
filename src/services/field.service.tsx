@@ -11,7 +11,7 @@ import TextareaComponent from 'components/textarea/textarea.component';
 import ListComponent from 'components/list/list.component';
 import { getFileName } from './utils.service';
 
-export const getField = (field: Field, index: number, form: Record<string, any>, setForm: Function, formErrors: Record<string, string>, setFormErrors: Function, errors?: Record<string, string>, calendarLocale?: any): ReactElement | void => {
+export const getField = (field: Field, index: number, form: Record<string, any>, setForm: Function, formErrors: Record<string, string>, setFormErrors: Function, errors?: Record<string, string>, calendarLocale?: any): ReactElement => {
     switch (field.type) {
         case 'string':
         case 'email':

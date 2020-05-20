@@ -10,10 +10,8 @@ export const validateForm = async(fields: Field[], form: Record<string, any>, fo
     for (let field of fields) {
         const error = await getFieldError(field, form);
 
-        if (!error) {
-            if (field.type === 'file' && !field.multipleFiles) {
-                form[field.name] = form[field.name];
-            }
+        if (!error && field.type === 'file' && !field.multipleFiles) {
+            form[field.name] = form[field.name][0];
         }
 
         newFormErrors[field.name] = error;

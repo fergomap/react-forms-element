@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export const defaultErrors: Record<string, string> = {
     "required_field": "Required field",
     "wrong_email": "Wrong email format",

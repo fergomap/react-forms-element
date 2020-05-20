@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import Option from './option';
 
 export default class OptionImp implements Option {

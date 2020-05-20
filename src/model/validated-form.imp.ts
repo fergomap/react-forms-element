@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import ValidatedForm from './validated-form';
 
 export default class ValidatedFormImp implements ValidatedForm {
