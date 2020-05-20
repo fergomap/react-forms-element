@@ -28,4 +28,7 @@ export default interface Field {
     onBlur?: Function;
     fields?: Field[];
     showInList?: boolean;
+    formatDate?: Function;
+    dateFormat?: string;
+    onSubmit?: Function;
 }

@@ -98,6 +98,7 @@
                         background-color: red;
                         border-radius: 2px;
                         color: white;
+                        cursor: pointer;
 
                         &:before, &:after {
                             background-color: white;
@@ -111,6 +112,7 @@
                         margin-right: 10px;
                         border-radius: 2px;
                         background-color: #ffcc00;
+                        cursor: pointer;
 
                         .edit {
                             color: white;
@@ -138,6 +140,10 @@
                             }
                         }
                     }                    
+                }
+
+                .list-file-name {
+                    display: block;
                 }
             }
         }

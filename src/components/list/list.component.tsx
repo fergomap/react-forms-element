@@ -1,11 +1,12 @@
 import React, { ReactElement, FunctionComponent, FormEvent, useEffect, useState } from 'react';
 import './list.component.scss';
 import FieldComponentProps from 'model/field-component-props';
-import { getField } from 'services/field.service';
+import { getField, fieldToTableElement } from 'services/field.service';
 import Field from 'model/field';
-import { generateForm } from 'services/utils.service';
+import { generateForm, getFileName } from 'services/utils.service';
 import ValidatedForm from 'model/validated-form';
 import { validateForm } from 'services/form.service';
+import ErrorComponent from 'components/error/error.component';
 
 const ListComponent: FunctionComponent<FieldComponentProps> = (props): ReactElement => {
     const [ form, setForm ] = useState<Record<string, any>>({});
@@ -17,27 +18,56 @@ const ListComponent: FunctionComponent<FieldComponentProps> = (props): ReactElem
         setFormErrors(generatedForm[1]);
     }, [props.field.fields]);
 
+    const editElement = (index: number): void => {
+        const fieldsCopy: Field[] = [];
+
+        (props.field.fields || []).forEach(field => {
+            const fieldCopy = {...field};
+            fieldCopy.value = props.form[props.field.name][index][field.name];
+            fieldsCopy.push(fieldCopy);
+        });
+
+        const generatedForm = generateForm(fieldsCopy);
+        setForm(generatedForm[0]);
+        setFormErrors(generatedForm[1]);
+        removeElement(index);
+    };
+
+    const removeElement = (index: number): void => {
+        const copyForm = {...props.form};
+        copyForm[props.field.name].splice(index, 1);
+        props.setForm(copyForm);
+    };
+
     const submit = async(): Promise<void> => {
         const validatedForm: ValidatedForm = await validateForm(props.field.fields || [], form, formErrors);
 
         if (validatedForm.isValid) {
-            const copyForm = {...props.form};
-            copyForm[props.field.name] = copyForm[props.field.name].concat(form);
-            props.setForm(copyForm);
-            const generatedForm = generateForm(props.field.fields || []);
-            setForm(generatedForm[0]);
-            setFormErrors(generatedForm[1]);
+            let errors: Record<string, string> = {};
+
+            if (props.field.onSubmit) {
+                errors = await props.field.onSubmit(validatedForm.values);
+            }
+
+           if (errors && Object.keys(errors).length) {
+                const formErrorsCopy = {...formErrors};
+
+                Object.keys(errors).forEach(key => {
+                    formErrorsCopy[key] = errors[key];
+                });
+
+                setFormErrors(formErrorsCopy);
+            } else {
+                const copyForm = {...props.form};
+                copyForm[props.field.name] = copyForm[props.field.name].concat(form);
+                props.setForm(copyForm);
+                props.field.onChange && props.field.onChange(form);
+                const generatedForm = generateForm(props.field.fields || []);
+                setForm(generatedForm[0]);
+                setFormErrors(generatedForm[1]);
+            }
         } else {
             setFormErrors(validatedForm.errors);
-        }
-    };
-
-    const fieldToTableElement = (field: Field, value: any): ReactElement => {
-        switch(field.type) {
-            case 'checkbox':
-                return <span className={value ? 'selected' : 'not-selected'}/>;
-            default:
-                return value;
         }
     };
 
@@ -60,14 +90,16 @@ const ListComponent: FunctionComponent<FieldComponentProps> = (props): ReactElem
                     return <tr key={index}>
                         { (props.field.fields || []).filter(f => f.showInList).map((field: Field, i: number) => <td key={i}>{ fieldToTableElement(field, element[field.name]) }</td> ) }
                         <td className="remove-td">
-                            <span className="edit-span"><span className="edit"/></span>
-                            <span className="remove not-selected"/>
+                            <span className="edit-span" onClick={() => editElement(index)}><span className="edit"/></span>
+                            <span className="remove not-selected" onClick={() => removeElement(index)}/>
                         </td>
                     </tr>;
                 }) }
                 </tbody>
             </table>
         </> }
+        <ErrorComponent errorCode={props.formErrors[props.field.name]} errors={props.errors} />
+        <ErrorComponent errorCode={formErrors.generalError} errors={props.errors} />
     </div>;
 }
 

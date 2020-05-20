@@ -1,18 +1,9 @@
 import React, { FunctionComponent, ReactElement } from 'react';
-import Field from 'model/field';
 import { handleChange, handleBlur } from 'services/form.service';
 import ErrorComponent from 'components/error/error.component';
+import FieldComponentProps from 'model/field-component-props';
 
-interface TextareaComponentProps {
-    field: Field;
-    form: Record<string, any>;
-    setForm: Function;
-    formErrors: Record<string, string>;
-    setFormErrors: Function;
-    errors?: Record<string, string>;
-}
-
-const TextareaComponent: FunctionComponent<TextareaComponentProps> = ({ field, form, setForm, formErrors, setFormErrors, errors }): ReactElement => {
+const TextareaComponent: FunctionComponent<FieldComponentProps> = ({ field, form, setForm, formErrors, setFormErrors, errors }): ReactElement => {
     return <div className={`field ${field.className ? field.className : ''}`}>
         { field.label && <label>{ field.label }</label> }
         <textarea 

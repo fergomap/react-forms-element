@@ -5,6 +5,7 @@ import { validateForm } from 'services/form.service';
 import ValidatedForm from 'model/validated-form';
 import { getField } from 'services/field.service';
 import { generateForm } from 'services/utils.service';
+import ErrorComponent from 'components/error/error.component';
 
 interface FormComponentProps {
     fields: Field[];
@@ -25,23 +26,33 @@ const FormComponent: FunctionComponent<FormComponentProps> = (props): ReactEleme
         setFormErrors(generatedForm[1]);
     }, [props.fields]);
 
-    const onSubmit = async(e: FormEvent<HTMLFormElement>): Promise<void> => {
-        e.preventDefault();
+    const onSubmit = async(): Promise<void> => {
         const validatedForm: ValidatedForm = await validateForm(props.fields, form, formErrors);
 
         if (validatedForm.isValid) {
-            console.log(validatedForm.values);
+            const errors = await props.onSubmit(validatedForm.values);
+
+            if (errors) {
+                const formErrorsCopy = {...formErrors};
+
+                Object.keys(errors).forEach(key => {
+                    formErrorsCopy[key] = errors[key];
+                });
+
+                setFormErrors(formErrorsCopy);
+            }
         } else {
             setFormErrors(validatedForm.errors);
         }
     };
 
-    return <form className={`form-component ${props.className ? props.className : ''}`} noValidate={true} onSubmit={onSubmit}>
+    return <div className={`form-component ${props.className ? props.className : ''}`}>
         { Object.keys(form).length && props.fields.map((field: Field, index: number) => getField(field, index, form, setForm, formErrors, setFormErrors, props.errors, props.calendarLocale)) }
+        <ErrorComponent errorCode={formErrors.generalError} errors={props.errors} />
         <div className="submit-container">
-            <button type="submit">{ props.submitButtonText || 'SEND' }</button>
+            <button onClick={onSubmit}>{ props.submitButtonText || 'SEND' }</button>
         </div>
-    </form>;
+    </div>;
 };
 
 export default FormComponent;

@@ -1,21 +1,12 @@
 import React, { FunctionComponent, ReactElement } from 'react';
 import './file.component.scss';
-import Field from 'model/field';
 import Dropzone from 'react-dropzone';
 import { handleChange } from 'services/form.service';
 import { getFileName } from 'services/utils.service';
 import ErrorComponent from 'components/error/error.component';
+import FieldComponentProps from 'model/field-component-props';
 
-interface FileComponentProps {
-    field: Field;
-    form: Record<string, any>;
-    setForm: Function;
-    formErrors: Record<string, string>;
-    setFormErrors: Function;
-    errors?: Record<string, string>;
-}
-
-const FileComponent: FunctionComponent<FileComponentProps> = ({ field, form, setForm, formErrors, setFormErrors, errors }): ReactElement => {
+const FileComponent: FunctionComponent<FieldComponentProps> = ({ field, form, setForm, formErrors, setFormErrors, errors }): ReactElement => {
     const removeElement = (index: number): void => {
         const files = [...form[field.name]];
         files.splice(index, 1);

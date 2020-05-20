@@ -14,10 +14,6 @@ export const validateForm = async(fields: Field[], form: Record<string, any>, fo
             if (field.type === 'file' && !field.multipleFiles) {
                 form[field.name] = form[field.name];
             }
-
-            if (field.type === 'select') {
-                form[field.name] = field.multipleSelected ? form[field.name].map((option: Option) => option.value) : form[field.name].value;
-            }
         }
 
         newFormErrors[field.name] = error;
@@ -37,6 +33,8 @@ export const getFieldError = (field: Field, form: Record<string, any>): Promise<
             return validateEmail(field, form[field.name]);
         case 'number':
             return validateNumber(field, form[field.name]);
+        case 'list':
+            return validateList(field, form[field.name], 'required_field');
         case 'checkbox-list':
             return validateList(field, form[field.name]);
         case 'file':
@@ -97,6 +95,7 @@ export const handleChange = (field: Field, value: any, form: Record<string, any>
     const newFormErrors = {...formErrors};
     newForm[field.name] = value;
     newFormErrors[field.name] = '';
+    newFormErrors.generalError = '';
     setForm(newForm);
     setFormErrors(newFormErrors);
     field.onChange && field.onChange(value);

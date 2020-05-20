@@ -30,7 +30,7 @@ export const getErrorMessage = (errorCode: string): string => {
 
 export const generateForm = (fields: Field[]): [Record<string, any>, Record<string, string>] => {
     const newForm: Record<string, any> = {};
-    const newFormErrors: Record<string, string> = {};
+    const newFormErrors: Record<string, string> = { generalError: '' };
 
     fields.forEach((field: Field) => {
         if (field.type !== 'custom') {

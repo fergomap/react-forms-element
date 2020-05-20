@@ -1,22 +1,15 @@
 import React, { FunctionComponent, ReactElement } from 'react';
 import './checkbox.component.scss';
-import Field from 'model/field';
 import { handleCheckboxChange } from 'services/form.service';
 import Option from 'model/option';
 import ErrorComponent from 'components/error/error.component';
+import FieldComponentProps from 'model/field-component-props';
 
-interface CheckboxComponentProps {
-    field: Field;
-    form: Record<string, any>;
-    setForm: Function;
-    formErrors: Record<string, string>;
-    setFormErrors: Function;
+interface CheckboxComponentProps extends FieldComponentProps {
     option: Option;
-    onChange?: Function;
-    errors?: Record<string, string>;
 }
 
-const CheckboxComponent: FunctionComponent<CheckboxComponentProps> = ({ field, form, setForm, formErrors, setFormErrors, option, onChange, errors }): ReactElement => {
+const CheckboxComponent: FunctionComponent<CheckboxComponentProps> = ({ field, form, setForm, formErrors, setFormErrors, option, errors }): ReactElement => {
 
     const isChecked = (): boolean => {
         return field.type === 'checkbox' ? !!form[field.name] : form[field.name].includes(option.value);

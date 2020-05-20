@@ -1,17 +1,11 @@
 import React, { FunctionComponent, ReactElement } from 'react';
 import './date.component.scss';
 import DatePicker from 'react-datepicker';
-import Field from 'model/field';
 import { handleChange } from 'services/form.service';
 import ErrorComponent from 'components/error/error.component';
+import FieldComponentProps from 'model/field-component-props';
 
-interface DateComponentProps {
-    field: Field;
-    form: Record<string, any>;
-    setForm: Function;
-    formErrors: Record<string, string>;
-    setFormErrors: Function;
-    errors?: Record<string, string>;
+interface DateComponentProps extends FieldComponentProps {
     calendarLocale?: any;
 }
 
@@ -22,7 +16,7 @@ const DateComponent: FunctionComponent<DateComponentProps> = ({ field, form, set
             className={formErrors[field.name] && 'input-error'}
             selected={form[field.name]}
             onChange={date => handleChange(field, date && new Date(date), form, setForm, formErrors, setFormErrors)}
-            dateFormat="dd/MM/yyyy"
+            dateFormat={field.dateFormat || 'dd/MM/yyyy'}
             withPortal={field.mobileCalendar && window.innerWidth < 600}
             placeholderText={field.placeholder}
             minDate={field.minDate}
