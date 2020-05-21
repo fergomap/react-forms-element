@@ -53,6 +53,12 @@ describe('FieldService', () => {
             expect(wrapper.find('span').at(1).text()).toEqual('-');
         });
 
+        it('should return an empty span when options is undefined', () => {
+            const wrapper = mount(fieldToTableElement({name: '', type: 'checkbox-list'}, ['option']));
+
+            expect(wrapper.find('span').text()).toEqual('-');
+        });
+
         it('should call getFileName to as many times as files there are and return a list of span', () => {
             const wrapper = mount(fieldToTableElement({name: '', type: 'file', multipleFiles: true}, ['file1', new File([], 'file2')]));
 
@@ -80,6 +86,12 @@ describe('FieldService', () => {
 
             expect(wrapper.find('span').length).toEqual(1);
             expect(wrapper.find('span').at(0).text()).toEqual('Option');
+        });
+
+        it('should an empty span when options is undefined', () => {
+            const wrapper = mount(fieldToTableElement({name: '', type: 'select'}, 'option'));
+            
+            expect(wrapper.find('span').text()).toEqual('-');
         });
 
         it('should not call to formatDate when it is defined but there is no value', () => {

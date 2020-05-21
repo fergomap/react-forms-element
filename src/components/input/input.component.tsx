@@ -2,10 +2,11 @@ import React, { FunctionComponent, ReactElement } from 'react';
 import { handleChange, handleBlur } from 'services/form.service';
 import ErrorComponent from 'components/error/error.component';
 import FieldComponentProps from 'model/field-component-props';
+import LabelComponent from 'components/label/label.component';
 
 const InputComponent: FunctionComponent<FieldComponentProps> = ({ field, form, setForm, formErrors, setFormErrors, errors }): ReactElement => {
     return <div className={`field ${field.className ? field.className : ''}`}>
-        { field.label && <label>{ field.label }</label> }
+        <LabelComponent label={field.label} />
         <input 
             value={form[field.name]} 
             name={field.name} 

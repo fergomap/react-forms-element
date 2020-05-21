@@ -9,7 +9,7 @@ export default interface Field {
     placeholder?: string;
     title?: string;
     addButton?: string;
-    label?: string;
+    label?: string | ReactElement;
     required?: boolean;
     type?: 'string' | 'textarea' | 'number' | 'select' | 'date' | 'checkbox' | 'file' | 'email' | 'checkbox-list' | 'list' | 'custom';
     fileType?: string;

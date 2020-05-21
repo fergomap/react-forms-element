@@ -20,7 +20,7 @@ export const validateForm = async(fields: Field[], form: Record<string, any>, fo
     return new ValidatedFormImp(form, newFormErrors, !Object.values(newFormErrors).find(e => e !== ''));
 };
 
-export const getFieldError = (field: Field, form: Record<string, any>): Promise<string> | string => {
+export const getFieldError = (field: Field, form: Record<string, any>): Promise<string> => {
     switch(field.type) {
         case 'string':
         case 'checkbox':
@@ -120,6 +120,7 @@ export const handleCheckboxChange = async (field: Field, option: Option, value: 
     }
     
     newFormErrors[field.name] = await getFieldError(field, newForm);
+    newFormErrors.generalError = '';
     setForm(newForm);
     setFormErrors(newFormErrors);
     field.onChange && field.onChange(newForm[field.name]);
