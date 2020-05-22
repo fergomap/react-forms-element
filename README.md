@@ -2,7 +2,7 @@
 
 <div align="center">
     <p align="center">
-        <a href="https://fergomap.github.io/react-forms-element-demo/ target="_blank" react-forms-element-demo/" title="React Forms Element">
+        <a href="https://fergomap.github.io/react-forms-element-demo/" target="_blank" title="React Forms Element">
             <img src="https://raw.githubusercontent.com/fergomap/react-forms-element/master/images/logo.png" alt="React Forms Element Logo" width="320px" />
         </a>
     </p>
@@ -20,22 +20,31 @@ The repo with the code is [this one](https://github.com/fergomap/react-forms-ele
 ## Quickstart
 
 ```typescript
-import es from 'date-fns/locale/es';
+import React, { FunctionComponent, ReactElement } from 'react';
+import './App.scss';
+import { FormComponent, Field } from 'react-forms-element';
+
+const validatePassword = (password: string): string => {
+  return password.length < 6 ? 'short_pwd' : '';
+}
 
 const App: FunctionComponent = (): ReactElement => {
   const fields: Field[] = [
     { content: <div><h1>FORM EXAMPLE</h1></div>, type: 'custom' },
     { value: '', label: 'Name', name: 'name', type: 'string', required: true },
-    { value: '', label: 'Password', name: 'pwd', type: 'string', required: true, customValidator: (value: any) => value.length < 6 ? 'short_pwd' : '', inputType: 'password' }
+    { value: '', label: 'Password', name: 'pwd', type: 'password', required: true, customValidator: validatePassword, inputType: 'password' },
+    { value: '', label: 'Business', name: 'business', type: 'checkbox', required: true }
   ];
-  const errors = { short_pwd: 'Password too short'} ;
+  const errors = {
+    short_pwd: 'Password too short'
+  };
 
-  const onSubmit = (form: any): void => console.log(form);
+  const onSubmit = (form: any): any => console.log(form);
 
   return <div className="App">
-      <FormComponent calendarLocale={es} fields={fields} onSubmit={onSubmit} errors={errors} />
+      <FormComponent fields={fields} onSubmit={onSubmit} errors={errors} />
   </div>;
-}
+};
 
 export default App;
 ```
