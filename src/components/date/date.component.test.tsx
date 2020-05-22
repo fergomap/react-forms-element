@@ -23,7 +23,7 @@ describe('DateComponent', () => {
 
     it('should render an input-error class when there is error, set the passed dateFormat and withPortal to true when it is set as true and the document width is mobile', () => {
         window.innerWidth = 100;
-        const wrapper = mount(<DateComponent  field={{ name: 'date', dateFormat: 'format', mobileCalendar: true }} form={{}} setForm={jest.fn()} formErrors={{ date: 'error' }} setFormErrors={jest.fn()}/>);
+        const wrapper = mount(<DateComponent field={{ name: 'date', dateFormat: 'format', mobileCalendar: true }} form={{}} setForm={jest.fn()} formErrors={{ date: 'error' }} setFormErrors={jest.fn()}/>);
 
         expect(wrapper.find('.input-error').length).toBeGreaterThan(0);
         expect(wrapper.find(DatePicker).props().dateFormat).toEqual('format');
