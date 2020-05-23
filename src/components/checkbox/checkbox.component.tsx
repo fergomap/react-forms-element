@@ -17,12 +17,12 @@ const CheckboxComponent: FunctionComponent<CheckboxComponentProps> = ({ field, f
     };
 
     return <div className={`checkbox-component ${field.className ? field.className : ''}`}>
-        <label>
+        <label onClick={() => handleCheckboxChange(field, option, !isChecked(), form, setForm, formErrors, setFormErrors)}>
             <LabelComponent label={option.label} className="span-label"/>
             <input type="checkbox" 
                 checked={isChecked()} 
                 name={field.name} 
-                onChange={e => handleCheckboxChange(field, option, e.target.checked, form, setForm, formErrors, setFormErrors)}
+                readOnly={true}
             />
             <span className="checkmark"></span>
         </label>

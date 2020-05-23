@@ -13,13 +13,13 @@ describe('CheckboxComponent', () => {
         mockFormService(formService);
     });
 
-    it('should render an ErrorComponent when the type is checkbox and call to handleCheckboxChange when the input changes', () => {
+    it('should render an ErrorComponent when the type is checkbox and call to handleCheckboxChange when the label is clicked', () => {
         const field: Field = { name: 'business', type: 'checkbox' };
         const form = { business: true }, formErrors = { business: '' };
         const setForm = jest.fn(), setFormErrors = jest.fn();
         const wrapper = mount(<CheckboxComponent option={new OptionImp()} field={field} form={form} setForm={setForm} formErrors={formErrors} setFormErrors={setFormErrors} />);
 
-        (wrapper.find('input') as any).props().onChange({ target: { checked: true } });
+        wrapper.find('label').simulate('click');
 
         expect(wrapper.find('input').prop('checked')).toEqual(true);
         expect(wrapper.find(ErrorComponent).length).toEqual(1);

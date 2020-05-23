@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { getField, fieldToTableElement } from './field.service';
 import InputComponent from 'components/input/input.component';
 import { mockUtilsService } from './utils.service.mock';
@@ -31,7 +31,7 @@ describe('FieldService', () => {
             expect(getField({ name: '', type: 'file' }, 0, {}, jest.fn(), {}, jest.fn()).type).toEqual(FileComponent);
             expect(getField({ name: '', type: 'date' }, 0, {}, jest.fn(), {}, jest.fn()).type).toEqual(DateComponent);
             expect(getField({ name: '', type: 'list' }, 0, {}, jest.fn(), {}, jest.fn()).type).toEqual(ListComponent);
-            expect(getField({ name: '', type: 'custom' }, 0, {}, jest.fn(), {}, jest.fn()).type).toEqual('div');
+            expect(getField({ name: '', type: 'custom' }, 0, {}, jest.fn(), {}, jest.fn()).type).toEqual(Fragment);
         });
     });
 

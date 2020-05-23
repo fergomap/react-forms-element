@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, Fragment } from 'react';
 import Field from 'model/field';
 import InputComponent from 'components/input/input.component';
 import CheckboxComponent from 'components/checkbox/checkbox.component';
@@ -32,7 +32,7 @@ export const getField = (field: Field, index: number, form: Record<string, any>,
         case 'list':
             return <ListComponent key={index} field={field} form={form} setForm={setForm} formErrors={formErrors} setFormErrors={setFormErrors} errors={errors} />;
         case 'custom':
-            return <div key={index}>{ field.content }</div>;
+            return <Fragment key={index}>{ field.content }</Fragment>;
         default:
             return <InputComponent key={index} field={field} form={form} setForm={setForm} formErrors={formErrors} setFormErrors={setFormErrors} errors={errors} />;
     }
