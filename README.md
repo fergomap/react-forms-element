@@ -69,7 +69,7 @@ export default App;
 | Name | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | fields | Field[] | true | - | The array of fields to create the form and display. |
-| onSubmit | Function | true | - | The function to call when the form is submitted. It can return a JSON with errors where the key is the field name and the value the error code. |
+| onSubmit | Function | true | - | The function to call when the form is submitted. It can return a JSON with errors where the key is the field name and the value the error code, if you want to show a non specific field error set the message in the generalError property of the JSON. |
 | className | string | false | - | The class to add to the form main div. |
 | errors | Record<string, string> | false | Default errors ↑ | A JSON containing the error messages, if one of above is specified it will be used, if not the default will be used. If one of your custom validations return a custom message it has to be added in this JSON (if it is not found the form will show the returned string). |
 | calendarLocale | any | false | date-fns/locale/en-US | The calendar config for the date input, use the date-fns/locale option you need (check th examples). |

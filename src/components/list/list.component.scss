@@ -32,13 +32,17 @@
                 display: flex;
                 flex-direction: row;
                 border-bottom: solid 1px lightgray;
+
+                &:nth-child(even) {
+                    background-color: #ececec;
+                }
     
                 td {
                     flex: 1;
                     padding: 10px;
 
                     .not-selected {
-                        display: block;
+                        display: inline-block;
                         position: relative;
                         width: 20px;
                         height: 20px;
@@ -146,6 +150,36 @@
                     display: block;
                 }
             }
+        }
+
+        @media screen and (max-width: 600px) { 
+            thead {
+                display: none;
+            }
+
+            tbody tr, tr {
+                display: block;
+            }
+
+            tbody tr {
+                &:nth-child(even) {
+                    .data-td {
+                        border-bottom: solid 1px lightgray;
+                    }
+                }
+            }
+
+            .data-td {
+                display: block;
+                text-align: right;
+                border-bottom: solid 1px #f5eeee;
+
+                &:before {
+                    content: attr(data-label);
+                    float: left;
+                    font-weight: bold;
+                }
+            } 
         }
     }
 }

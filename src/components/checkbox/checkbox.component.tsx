@@ -18,7 +18,7 @@ const CheckboxComponent: FunctionComponent<CheckboxComponentProps> = ({ field, f
 
     return <div className={`checkbox-component ${field.className ? field.className : ''}`}>
         <label>
-            <LabelComponent label={field.label} className="span-label"/>
+            <LabelComponent label={option.label} className="span-label"/>
             <input type="checkbox" 
                 checked={isChecked()} 
                 name={field.name} 
