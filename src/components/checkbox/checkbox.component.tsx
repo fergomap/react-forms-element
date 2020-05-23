@@ -24,7 +24,7 @@ const CheckboxComponent: FunctionComponent<CheckboxComponentProps> = ({ field, f
                 name={field.name} 
                 readOnly={true}
             />
-            <span className="checkmark"></span>
+            <span className="checkmark" onClick={() => handleCheckboxChange(field, option, !isChecked(), form, setForm, formErrors, setFormErrors)}/>
         </label>
         { field.type === 'checkbox' && <ErrorComponent errorCode={formErrors[field.name]} errors={errors} /> }
     </div>;

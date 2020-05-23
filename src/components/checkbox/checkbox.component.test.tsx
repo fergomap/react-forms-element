@@ -20,6 +20,7 @@ describe('CheckboxComponent', () => {
         const wrapper = mount(<CheckboxComponent option={new OptionImp()} field={field} form={form} setForm={setForm} formErrors={formErrors} setFormErrors={setFormErrors} />);
 
         wrapper.find('label').simulate('click');
+        wrapper.find('span.checkmark').simulate('click');
 
         expect(wrapper.find('.custom-class').length).toEqual(1);
         expect(wrapper.find('input').prop('checked')).toEqual(true);
