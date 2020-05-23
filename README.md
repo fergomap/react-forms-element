@@ -149,4 +149,4 @@ Provide a className attribute to the field you want to style or override the cla
 
 Did you enjoy React Forms Element? Do you find it useful? Feel free to contribute and buy me a cup of coffee if you want to help!
 
-<a href='https://ko-fi.com/fernandogomez' target='_blank'><img height='36' style='border:0; height:40px;' src='https://az743702.vo.msecnd.net/cdn/kofi4.png'/></a>
+<a href='https://ko-fi.com/fergomap' target='_blank'><img height='36' style='border:0; height:40px;' src='https://az743702.vo.msecnd.net/cdn/kofi4.png'/></a>
