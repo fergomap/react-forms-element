@@ -12,6 +12,10 @@ $primary: #0a84ff;
         font-size: 14px;
     }
 
+    textarea {
+        resize: none;
+    }
+
     .field {
         display: flex;
         flex-direction: column;
