@@ -14,25 +14,25 @@ describe('CheckboxComponent', () => {
     });
 
     it('should render an ErrorComponent when the type is checkbox and call to handleCheckboxChange when the label is clicked', () => {
-        const field: Field = { name: 'business', type: 'checkbox' };
+        const field: Field = { name: 'business', type: 'checkbox', className: 'custom-class' };
         const form = { business: true }, formErrors = { business: '' };
         const setForm = jest.fn(), setFormErrors = jest.fn();
         const wrapper = mount(<CheckboxComponent option={new OptionImp()} field={field} form={form} setForm={setForm} formErrors={formErrors} setFormErrors={setFormErrors} />);
 
         wrapper.find('label').simulate('click');
 
+        expect(wrapper.find('.custom-class').length).toEqual(1);
         expect(wrapper.find('input').prop('checked')).toEqual(true);
         expect(wrapper.find(ErrorComponent).length).toEqual(1);
         expect(formService.handleCheckboxChange).toHaveBeenCalled();
     });
 
     it('should not render an ErrorComponent when the type is checkbox-list and set checked as false when it is not selected', () => {
-        const field: Field = { name: 'colors', type: 'checkbox-list', className: 'custom-class' };
+        const field: Field = { name: 'colors', type: 'checkbox-list' };
         const form = { colors: [ 'red' ] }, formErrors = { colors: '' };
         const setForm = jest.fn(), setFormErrors = jest.fn();
         const wrapper = mount(<CheckboxComponent option={new OptionImp('Green', 'green')} field={field} form={form} setForm={setForm} formErrors={formErrors} setFormErrors={setFormErrors} />);
 
-        expect(wrapper.find('.custom-class').length).toEqual(1);
         expect(wrapper.find('input').prop('checked')).toEqual(false);
         expect(wrapper.find(ErrorComponent).length).toEqual(0);
     });

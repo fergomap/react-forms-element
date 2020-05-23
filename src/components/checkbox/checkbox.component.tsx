@@ -16,7 +16,7 @@ const CheckboxComponent: FunctionComponent<CheckboxComponentProps> = ({ field, f
         return field.type === 'checkbox' ? !!form[field.name] : form[field.name].includes(option.value);
     };
 
-    return <div className={`checkbox-component ${field.className ? field.className : ''}`}>
+    return <div className={`checkbox-component ${(field.type === 'checkbox' && field.className) ? field.className : ''}`}>
         <label onClick={() => handleCheckboxChange(field, option, !isChecked(), form, setForm, formErrors, setFormErrors)}>
             <LabelComponent label={option.label} className="span-label"/>
             <input type="checkbox" 

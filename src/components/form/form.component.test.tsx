@@ -29,18 +29,19 @@ describe('FormComponent', () => {
     describe('onSubmit', () => {
         it('should not call to onSubmit when the form is not valid', async() => {
             const onSubmit = jest.fn();
-            const wrapper = mount(<FormComponent fields={[{ name: 'name' }]} onSubmit={onSubmit}/>);
+            const wrapper = mount(<FormComponent fields={[{ name: 'name' }]} onSubmit={onSubmit} className="custom-class" />);
 
             await act(async() => {
                 wrapper.find('.submit-container button').simulate('click');
             });
 
+            expect(wrapper.find('.custom-class').length).toBeGreaterThan(1);
             expect(formService.validateForm).toHaveBeenCalled();
             expect(onSubmit).not.toHaveBeenCalled();
         });
 
         it('should not call to onSubmit when the form is not valid', async() => {
-            const onSubmit = jest.fn();
+            const onSubmit = jest.fn().mockReturnValue({ generalError: 'error' });
             const wrapper = mount(<FormComponent fields={[{ name: 'name' }]} onSubmit={onSubmit}/>);
 
             (formService.validateForm as jest.Mock).mockReturnValue(new ValidatedFormImp({}, {}, true));

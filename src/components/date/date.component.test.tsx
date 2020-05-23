@@ -12,7 +12,7 @@ describe('DateComponent', () => {
     });
 
     it('should render the DatePicker with the default date format, the withPortal as false when they are not defined and call to handleChange when the onChange event is fired', () => {
-        const wrapper = mount(<DateComponent  field={{ name: 'date' }} form={{}} setForm={jest.fn()} formErrors={{}} setFormErrors={jest.fn()}/>);
+        const wrapper = mount(<DateComponent field={{ name: 'date', className: 'class-name' }} form={{}} setForm={jest.fn()} formErrors={{}} setFormErrors={jest.fn()}/>);
 
         (wrapper.find(DatePicker) as any).props().onChange('01/01/2020');
 

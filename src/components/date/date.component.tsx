@@ -11,7 +11,7 @@ interface DateComponentProps extends FieldComponentProps {
 }
 
 const DateComponent: FunctionComponent<DateComponentProps> = ({ field, form, setForm, formErrors, setFormErrors, errors, calendarLocale }): ReactElement => {
-    return <div className="date-component field">
+    return <div className={`date-component field ${field.className ? field.className : ''}`}>
         <LabelComponent label={field.label} />
         <DatePicker 
             className={formErrors[field.name] && 'input-error'}

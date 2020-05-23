@@ -16,6 +16,6 @@ describe('CheckboxList', () => {
         const wrapper = mount(<CheckboxListComponent field={{ name: 'colors', className: 'custom-class', options: [new OptionImp()] }} form={{ colors: [] }} setForm={jest.fn()} formErrors={{}} setFormErrors={jest.fn()} />);
 
         expect(wrapper.find(CheckboxComponent).length).toEqual(1);
-        expect(wrapper.find('.custom-class').length).toBeGreaterThan(1);
+        expect(wrapper.find('.custom-class').length).toEqual(1);
     });
 });
