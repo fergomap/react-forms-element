@@ -5,19 +5,20 @@ import { VALIDATORS_CONSTANTS } from 'model/validators.config';
 import Option from 'model/option';
 
 export const validateForm = async(fields: Field[], form: Record<string, any>, formErrors: Record<string, string>): Promise<ValidatedForm> => {
+    const newForm = {...form};
     const newFormErrors = {...formErrors};
     
     for (let field of fields) {
         const error = await getFieldError(field, form);
 
         if (!error && field.type === 'file' && !field.multipleFiles) {
-            form[field.name] = form[field.name][0];
+            newForm[field.name] = form[field.name][0];
         }
 
         newFormErrors[field.name] = error;
     };
     
-    return new ValidatedFormImp(form, newFormErrors, !Object.values(newFormErrors).find(e => e !== ''));
+    return new ValidatedFormImp(newForm, newFormErrors, !Object.values(newFormErrors).find(e => e !== ''));
 };
 
 export const getFieldError = (field: Field, form: Record<string, any>): Promise<string> => {
