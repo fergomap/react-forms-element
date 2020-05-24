@@ -44,7 +44,7 @@ export const fieldToTableElement = (field: Field, value: any): ReactElement => {
             return <span className={value ? 'selected' : 'not-selected'}/>;
         case 'checkbox-list':
             return <>
-                { value.map((v: string, index: number) => {
+                { (value.length ? value : ['']).map((v: string, index: number) => {
                     const option = (field.options || []).find(option => option.value === v);
                     return <span key={index} className="list-file-name">{ option ? option.label : '-' }</span>;
                 })}
@@ -52,20 +52,21 @@ export const fieldToTableElement = (field: Field, value: any): ReactElement => {
         case 'file':
             return <>
                 { field.multipleFiles ? 
-                    value.map((file: File | string, index: number) => <span key={index} className="list-file-name">{ getFileName(file) }</span>) : 
-                    <span className="list-file-name">{ getFileName(value) }</span> 
+                    (value.length ? value : ['-']).map((file: File | string, index: number) => <span key={index} className="list-file-name">{ getFileName(file) }</span>) : 
+                    <span className="list-file-name">{ getFileName(value) || '-' }</span> 
                 }
             </>;
         case 'select':
+            const values = field.multipleSelected ? (value.length ? value : ['']) : [value]
             return <>
-                { (field.multipleSelected ? value : [value]).map((v: string, index: number) => {
+                { values.map((v: string, index: number) => {
                     const option = (field.options || []).find(option => option.value === v);
                     return <span key={index} className="list-file-name">{ option ? option.label : '-' }</span>;
                 })}
             </>;
         case 'date':
-            return <span>{ value && (field.formatDate ? field.formatDate(value) : `${value.getMonth() + 1}/${value.getDate()}/${value.getFullYear()}`) }</span>;
+            return <span>{ value ? (field.formatDate ? field.formatDate(value) : `${value.getMonth() + 1}/${value.getDate()}/${value.getFullYear()}`) : '-' }</span>;
         default:
-            return <span>{ value }</span>;
+            return <span>{ value || '-' }</span>;
     }
 };
