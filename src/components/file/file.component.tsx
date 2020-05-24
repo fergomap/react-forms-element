@@ -16,7 +16,7 @@ const FileComponent: FunctionComponent<FieldComponentProps> = ({ field, form, se
 
     return <div className={`field file-component ${field.className ? field.className : ''}`}>
         <LabelComponent label={field.label} />
-        <Dropzone onDrop={(files: File[]) => handleChange(field, field.multipleFiles ? form[field.name].concat(files) : files, form, setForm, formErrors, setFormErrors)} accept={field.fileType} multiple={field.multipleFiles}>
+        <Dropzone onDrop={(files: File[]) => handleChange(field, field.multipleFiles ? form[field.name].concat(files) : files, form, setForm, formErrors, setFormErrors)} accept={field.fileType} multiple={!!field.multipleFiles}>
             {({getRootProps, getInputProps}: any) => (
                 <section className={`dropzone ${formErrors[field.name] && 'input-error'}`}>
                     <div {...getRootProps()}>
