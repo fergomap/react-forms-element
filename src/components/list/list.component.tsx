@@ -59,8 +59,11 @@ const ListComponent: FunctionComponent<FieldComponentProps> = (props): ReactElem
                 setFormErrors(formErrorsCopy);
             } else {
                 const copyForm = {...props.form};
+                const copyFormErrors = {...props.formErrors};
                 copyForm[props.field.name] = copyForm[props.field.name].concat(form);
+                copyFormErrors[props.field.name] = '';
                 props.setForm(copyForm);
+                props.setFormErrors(copyFormErrors);
                 props.field.onChange && props.field.onChange(form);
                 const generatedForm = generateForm(props.field.fields || []);
                 setForm(generatedForm[0]);
