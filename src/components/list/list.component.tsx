@@ -81,7 +81,7 @@ const ListComponent: FunctionComponent<FieldComponentProps> = (props): ReactElem
             <table>
                 <thead>
                     <tr>
-                        {(props.field.fields || []).filter(f => f.showInList).map((field: Field, i: number) => <th key={i}>{ field.label }</th>)}
+                        {(props.field.fields || []).filter(f => f.showInList).map((field: Field, i: number) => <th key={i}>{ field.listLabel || field.label }</th>)}
                         <th/>
                     </tr>
                 </thead>

@@ -105,6 +105,7 @@ export default App;
 | onBlur | Function | false | - | Function to call when the field blur event is triggered. |
 | fields | Field[] | false | - | Fields to show for a list component, more details in the next table. |
 | showInList | boolean | false | - | Fields of type list show a table with the current value, only the values of the fields with showInList as true will be shown. |
+| listLabel | string | false | - | Fields of type list show a table with the current value, listLabel will be shown in the table header. If it is not defined label will be set as header for this field. |
 | formatDate | Function | false | - | Function to call when showing a date in the list table of values. |
 | dateFormat | string | false | dd/MM/yyyy | Date format for the date input. |
 | onSubmit | Function | false | - | Function called when the form of a list element is submitted. |
