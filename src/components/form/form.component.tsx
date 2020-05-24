@@ -47,7 +47,7 @@ const FormComponent: FunctionComponent<FormComponentProps> = (props): ReactEleme
     };
 
     return <div className={`form-component ${props.className ? props.className : ''}`}>
-        { Object.keys(form).length && props.fields.map((field: Field, index: number) => getField(field, index, form, setForm, formErrors, setFormErrors, props.errors, props.calendarLocale)) }
+        { Object.keys(form).length ? props.fields.map((field: Field, index: number) => getField(field, index, form, setForm, formErrors, setFormErrors, props.errors, props.calendarLocale)) : null }
         <div className="general-error-container">
             <ErrorComponent errorCode={formErrors.generalError} errors={props.errors} />
         </div>
