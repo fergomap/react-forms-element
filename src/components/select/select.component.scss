@@ -22,6 +22,8 @@
         }
         
         .select__menu {
+            z-index: 1;
+            
             div {
                 .select__option--is-selected {
                     background-color: #0a84ff;
