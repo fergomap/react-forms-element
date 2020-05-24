@@ -24,7 +24,7 @@ const FormComponent: FunctionComponent<FormComponentProps> = (props): ReactEleme
         const generatedForm = generateForm(props.fields);
         setForm(generatedForm[0]);
         setFormErrors(generatedForm[1]);
-    }, [props.fields]);
+    }, []);
 
     const onSubmit = async(): Promise<void> => {
         const validatedForm: ValidatedForm = await validateForm(props.fields, form, formErrors);
