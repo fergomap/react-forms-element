@@ -1,6 +1,6 @@
 {
   "name": "react-forms-element",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An npm package to simplify forms management in React.",
   "main": "build/index.js",
   "module": "build/index.es.js",
